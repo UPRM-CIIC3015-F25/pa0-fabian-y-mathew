@@ -135,8 +135,12 @@ while True:
     #Levels
     if score > 9 and score < 20:
         pygame.draw.ellipse(screen, light_yellow, ball)
-    elif score > 19 and score <= 30:
+    elif score > 19 and score <= 29:
         pygame.draw.ellipse(screen, light_orange, ball)
+    elif score > 29 and score <=39:
+        pygame.draw.ellipse(screen, red, ball)
+    elif score > 39 and score <= 100000000:
+        pygame.draw.ellipse(screen, black, ball)
 
     # Update display
     pygame.display.flip()

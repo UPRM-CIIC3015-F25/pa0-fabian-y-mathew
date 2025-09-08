@@ -70,9 +70,6 @@ screen_height = 500  # Screen height (can be adjusted)
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Pong')  # Set window title
 
-# Colors
-bg_color = pygame.Color('grey12')
-
 # Game Rectangles (ball and player paddle)
 ball = pygame.Rect(screen_width / 2 - 15, screen_height / 2 - 15, 30, 30)  # Ball (centered)
 # TODO Task 1 Make the paddle bigger
@@ -118,17 +115,27 @@ while True:
     player_movement()
 
     # Visuals
+    bg_color = pygame.Color('grey12')
     light_green = pygame.Color('green')
-    light_yellow = pygame.Color('yellow')
     light_grey = pygame.Color('grey')
     screen.fill(bg_color)  # Clear screen with background color
     pygame.draw.rect(screen, light_grey, player)  # Draw player paddle
-    # TODO Task 3: Change the Ball Color
     pygame.draw.ellipse(screen, light_green, ball)  # Draw ball
-    if score >9 and score <=20:
-        pygame.draw.ellipse(screen, light_yellow, ball)
     player_text = basic_font.render(f'{score}', False, light_grey)  # Render player score
-    screen.blit(player_text, (screen_width/2 - 15, 10))  # Display score on screen
+    screen.blit(player_text, (screen_width / 2 - 15, 10))  # Display score on screen
+
+    # Colors
+    light_green = pygame.Color('green')
+    light_yellow = pygame.Color('yellow')
+    light_grey = pygame.Color('grey')
+    light_orange = pygame.Color('orange')
+    red = pygame.Color('red')
+    black = pygame.Color('black')
+
+    #Levels
+    if score > 9 and score <= 20:
+        pygame.draw.ellipse(screen, light_yellow, ball)
+
 
     # Update display
     pygame.display.flip()

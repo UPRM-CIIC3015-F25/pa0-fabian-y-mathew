@@ -143,7 +143,7 @@ while True:
     else:
         ball_speed_y = -speed
     #Levels
-    if score > 1 and score < 20:
+    if score > 9 and score < 20:
         pygame.draw.ellipse(screen, light_yellow, ball)
         speed = 7
     elif score > 19 and score <= 29:

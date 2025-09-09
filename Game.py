@@ -24,7 +24,18 @@ def ball_movement():
             # TODO Task 2: Fix score to increase by 1
             score += 1  # Increase player score
             ball_speed_y *= -1  # Reverse ball's vertical direction
+            hit_sound = pygame.mixer.Sound(r"C:\Users\Mathew\Downloads\mixkit-chewing-something-crunchy-2244.wav")
+            hit_sound.set_volume(0.5)
+            hit_sound.play()
+        if score % 10 == 0:
+            hit_sound = pygame.mixer.Sound(r"C:\Users\Mathew\Downloads\mixkit-interface-device-click-2577.wav")
+            hit_sound.set_volume(0.5)
+            hit_sound.play()
+        ball_speed_y += -.06
+
+
             # TODO Task 6: Add sound effects HERE
+
 
     # Ball collision with top boundary
     if ball.top <= 0:
@@ -71,7 +82,7 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Pong')  # Set window title
 
 # Colors
-bg_color = pygame.Color('grey12')
+bg_color = pygame.Color('darkolivegreen4')
 
 # Game Rectangles (ball and player paddle)
 ball = pygame.Rect(screen_width / 2 - 15, screen_height / 2 - 15, 30, 30)  # Ball (centered)
@@ -95,7 +106,7 @@ start = False  # Indicates if the game has started
 while True:
     # Event handling
     # TODO Task 4: Add your name
-    name = "Fabian Ortiz"
+    name = "Mathew"
     for event in pygame.event.get():
         if event.type == pygame.QUIT:  # Quit the game
             pygame.quit()
@@ -118,6 +129,7 @@ while True:
     player_movement()
 
     # Visuals
+    Brown_ = pygame.Color('burlywood2')
     light_grey = pygame.Color('grey83')
     red = pygame.Color('red')
     Blood_ = pygame.Color('red4')
@@ -125,7 +137,7 @@ while True:
     pygame.draw.rect(screen, light_grey, player)  # Draw player paddle
     # TODO Task 3: Change the Ball Color
     pygame.draw.ellipse(screen, Blood_, ball)  # Draw ball
-    player_text = basic_font.render(f'{score}', False, light_grey)  # Render player score
+    player_text = basic_font.render(f'{score}', False, Brown_)  # Render player score
     screen.blit(player_text, (screen_width/2 - 15, 10))  # Display score on screen
 
     # Update display

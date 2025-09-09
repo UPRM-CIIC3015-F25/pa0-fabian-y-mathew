@@ -21,21 +21,10 @@ def ball_movement():
     # Ball collision with the player paddle
     if ball.colliderect(player):
         if abs(ball.bottom - player.top) < 10:  # Check if ball hits the top of the paddle
-            # TODO Task 2: Fix score to increase by 1
+            # Score (Fixed)
             score += 1  # Increase player score
             ball_speed_y *= -1  # Reverse ball's vertical direction
-            hit_sound = pygame.mixer.Sound(r"C:\Users\Mathew\Downloads\mixkit-chewing-something-crunchy-2244.wav")
-            hit_sound.set_volume(0.5)
-            hit_sound.play()
-        if score % 10 == 0:
-            hit_sound = pygame.mixer.Sound(r"C:\Users\Mathew\Downloads\mixkit-interface-device-click-2577.wav")
-            hit_sound.set_volume(0.5)
-            hit_sound.play()
-        ball_speed_y += -.06
-
-
             # TODO Task 6: Add sound effects HERE
-
 
     # Ball collision with top boundary
     if ball.top <= 0:
@@ -81,9 +70,6 @@ screen_height = 500  # Screen height (can be adjusted)
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Pong')  # Set window title
 
-# Colors
-bg_color = pygame.Color('darkolivegreen4')
-
 # Game Rectangles (ball and player paddle)
 ball = pygame.Rect(screen_width / 2 - 15, screen_height / 2 - 15, 30, 30)  # Ball (centered)
 # TODO Task 1 Make the paddle bigger
@@ -95,6 +81,7 @@ player = pygame.Rect(screen_width/2 - 45, screen_height - 20, player_width, play
 ball_speed_x = 0
 ball_speed_y = 0
 player_speed = 0
+speed = 6
 
 # Score Text setup
 score = 0
@@ -106,7 +93,7 @@ start = False  # Indicates if the game has started
 while True:
     # Event handling
     # TODO Task 4: Add your name
-    name = "Mathew"
+    name = "Fabian Ortiz"
     for event in pygame.event.get():
         if event.type == pygame.QUIT:  # Quit the game
             pygame.quit()
@@ -129,16 +116,47 @@ while True:
     player_movement()
 
     # Visuals
-    Brown_ = pygame.Color('burlywood2')
-    light_grey = pygame.Color('grey83')
-    red = pygame.Color('red')
-    Blood_ = pygame.Color('red4')
+    bg_color = pygame.Color('grey12')
+    light_green = pygame.Color('green')
+    light_grey = pygame.Color('grey')
     screen.fill(bg_color)  # Clear screen with background color
     pygame.draw.rect(screen, light_grey, player)  # Draw player paddle
-    # TODO Task 3: Change the Ball Color
-    pygame.draw.ellipse(screen, Blood_, ball)  # Draw ball
-    player_text = basic_font.render(f'{score}', False, Brown_)  # Render player score
-    screen.blit(player_text, (screen_width/2 - 15, 10))  # Display score on screen
+    pygame.draw.ellipse(screen, light_green, ball)  # Draw ball
+    player_text = basic_font.render(f'{score}', False, light_grey)  # Render player score
+    screen.blit(player_text, (screen_width / 2 - 15, 10))  # Display score on screen
+
+    # Colors
+    light_green = pygame.Color('green')
+    light_yellow = pygame.Color('yellow')
+    light_grey = pygame.Color('grey')
+    light_orange = pygame.Color('orange')
+    red = pygame.Color('red')
+    black = pygame.Color('black')
+
+#Velocidades para niveles
+    if ball_speed_x > 0:
+        ball_speed_x = speed
+    else:
+        ball_speed_x = -speed
+    if ball_speed_y > 0:
+        ball_speed_y = speed
+    else:
+        ball_speed_y = -speed
+    #Levels
+    if score > 9 and score < 20:
+        pygame.draw.ellipse(screen, light_yellow, ball)
+        speed = 7
+    elif score > 19 and score <= 29:
+        pygame.draw.ellipse(screen, light_orange, ball)
+        speed = 9
+    elif score > 29 and score <=39:
+        pygame.draw.ellipse(screen, red, ball)
+        speed = 12
+    elif score > 39 and score <= 100000000:
+        pygame.draw.ellipse(screen, black, ball)
+        speed = 15
+
+
 
     # Update display
     pygame.display.flip()

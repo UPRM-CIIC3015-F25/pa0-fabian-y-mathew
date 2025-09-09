@@ -21,7 +21,7 @@ def ball_movement():
     # Ball collision with the player paddle
     if ball.colliderect(player):
         if abs(ball.bottom - player.top) < 10:  # Check if ball hits the top of the paddle
-            # TODO Task 2: Fix score to increase by 1
+            # Score (Fixed)
             score += 1  # Increase player score
             ball_speed_y *= -1  # Reverse ball's vertical direction
             # TODO Task 6: Add sound effects HERE
@@ -81,6 +81,7 @@ player = pygame.Rect(screen_width/2 - 45, screen_height - 20, player_width, play
 ball_speed_x = 0
 ball_speed_y = 0
 player_speed = 0
+speed = 6
 
 # Score Text setup
 score = 0
@@ -132,15 +133,30 @@ while True:
     red = pygame.Color('red')
     black = pygame.Color('black')
 
+#Velocidades para niveles
+    if ball_speed_x > 0:
+        ball_speed_x = speed
+    else:
+        ball_speed_x = -speed
+    if ball_speed_y > 0:
+        ball_speed_y = speed
+    else:
+        ball_speed_y = -speed
     #Levels
-    if score > 9 and score < 20:
+    if score > 1 and score < 20:
         pygame.draw.ellipse(screen, light_yellow, ball)
+        speed = 7
     elif score > 19 and score <= 29:
         pygame.draw.ellipse(screen, light_orange, ball)
+        speed = 9
     elif score > 29 and score <=39:
         pygame.draw.ellipse(screen, red, ball)
+        speed = 12
     elif score > 39 and score <= 100000000:
         pygame.draw.ellipse(screen, black, ball)
+        speed = 15
+
+
 
     # Update display
     pygame.display.flip()

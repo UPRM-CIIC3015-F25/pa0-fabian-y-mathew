@@ -4,6 +4,7 @@ def ball_movement():
     """
     Handles the movement of the ball and collision detection with the player and screen boundaries.
     """
+
     global ball_speed_x, ball_speed_y, score, start
 
     # Move the ball
@@ -24,7 +25,6 @@ def ball_movement():
             # Score (Fixed)
             score += 1  # Increase player score
             ball_speed_y *= -1  # Reverse ball's vertical direction
-            # TODO Task 6: Add sound effects HERE
 
     # Ball collision with top boundary
     if ball.top <= 0:
@@ -71,7 +71,7 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Pong')  # Set window title
 
 # Game Rectangles (ball and player paddle)
-ball = pygame.Rect(screen_width / 2 - 15, screen_height / 2 - 15, 30, 30)  # Ball (centered)
+ball = pygame.Rect(screen_width / 2 - 10, screen_height / 2 - 10, 20, 20)  # Ball (centered)
 # TODO Task 1 Make the paddle bigger
 player_height = 478
 player_width = 208

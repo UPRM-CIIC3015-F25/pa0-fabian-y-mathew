@@ -4,6 +4,7 @@ def ball_movement():
     """
     Handles the movement of the ball and collision detection with the player and screen boundaries.
     """
+
     global ball_speed_x, ball_speed_y, score, start
 
     # Move the ball
@@ -24,7 +25,6 @@ def ball_movement():
             # Score (Fixed)
             score += 1  # Increase player score
             ball_speed_y *= -1  # Reverse ball's vertical direction
-            # TODO Task 6: Add sound effects HERE
 
     # Ball collision with top boundary
     if ball.top <= 0:
@@ -71,7 +71,7 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Pong')  # Set window title
 
 # Game Rectangles (ball and player paddle)
-ball = pygame.Rect(screen_width / 2 - 15, screen_height / 2 - 15, 30, 30)  # Ball (centered)
+ball = pygame.Rect(screen_width / 2 - 10, screen_height / 2 - 10, 20, 20)  # Ball (centered)
 # TODO Task 1 Make the paddle bigger
 player_height = 478
 player_width = 208
@@ -146,17 +146,30 @@ while True:
     if score > 9 and score < 20:
         pygame.draw.ellipse(screen, light_yellow, ball)
         speed = 7
+        player.width = 160
     elif score > 19 and score <= 29:
         pygame.draw.ellipse(screen, light_orange, ball)
         speed = 9
+        player.width = 130
     elif score > 29 and score <=39:
         pygame.draw.ellipse(screen, red, ball)
         speed = 12
+        player.width = 110
     elif score > 39 and score <= 100000000:
         pygame.draw.ellipse(screen, black, ball)
         speed = 15
+        player.width = 100
 
-
+    def restart():
+        global ball_speed_x, ball_speed_y, score, speed, player
+        ball.center = (screen_width / 2, screen_height / 2)
+        ball_speed_y, ball_speed_x = 0, 0
+        score = 0
+        speed = 6
+        player.width = 208
+        player.height = 20
+        player.x = (screen_width - player.width) // 2
+        player.y = screen_height - player.height - 10
 
     # Update display
     pygame.display.flip()

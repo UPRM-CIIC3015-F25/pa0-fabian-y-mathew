@@ -146,17 +146,30 @@ while True:
     if score > 9 and score < 20:
         pygame.draw.ellipse(screen, light_yellow, ball)
         speed = 7
+        player.width = 160
     elif score > 19 and score <= 29:
         pygame.draw.ellipse(screen, light_orange, ball)
         speed = 9
+        player.width = 130
     elif score > 29 and score <=39:
         pygame.draw.ellipse(screen, red, ball)
         speed = 12
+        player.width = 110
     elif score > 39 and score <= 100000000:
         pygame.draw.ellipse(screen, black, ball)
         speed = 15
+        player.width = 100
 
-
+    def restart():
+        global ball_speed_x, ball_speed_y, score, speed, player
+        ball.center = (screen_width / 2, screen_height / 2)
+        ball_speed_y, ball_speed_x = 0, 0
+        score = 0
+        speed = 6
+        player.width = 208
+        player.height = 20
+        player.x = (screen_width - player.width) // 2
+        player.y = screen_height - player.height - 10
 
     # Update display
     pygame.display.flip()
